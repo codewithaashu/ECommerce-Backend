@@ -24,6 +24,6 @@ router.route("/paymentVerification").post(paymentVerification);
 //get order id
 router.route("/orderinfo").get(getOrderInfo);
 //route for generate otp
-router.route("/generateotp").get(forgotPassword);
+router.route("/generateotp").post(forgotPassword);
 //export the router to use in other file
 module.exports = router;
