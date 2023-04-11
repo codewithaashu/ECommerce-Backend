@@ -221,7 +221,7 @@ const getOrderInfo= async(req,res)=>{
 const forgotPassword = async(req,res)=>{
     //create a transport 
     const transport = nodemailer.createTransport({
-        // service: "gmail",
+        service: "gmail",
         // auth: {
         //   user: "codewithaashu1@gmail.com",
         //   pass: "ojjyhvmrtrzgppoi",
@@ -230,8 +230,8 @@ const forgotPassword = async(req,res)=>{
         host: "sandbox.smtp.mailtrap.io",
         port: 2525,
         auth: {
-          user: "6e2da73b24a2b2",
-          pass: "c2165f839a5381"
+          user: "codewithaashu1@gmail.com",
+          pass: "ojjyhvmrtrzgppoi"
         }
     })
     //mail details(from,to,subject and body)
@@ -239,7 +239,7 @@ const forgotPassword = async(req,res)=>{
         from: "codewithaashu1@gmail.com",
         to:"ashishrajk123@gmail.com",
         subject:"Testing mail",
-        html:`<h1>Testing mail from onrender server</h1>`
+        html:`<h1>Testing mail from onrender server new way</h1>`
     }
     transport.sendMail(mailInfo, function (error, info) {
         if (error) {
