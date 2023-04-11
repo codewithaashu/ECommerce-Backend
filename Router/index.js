@@ -2,7 +2,7 @@
 const express = require("express");
 //create the router instance
 const router = express.Router();
-const {getAllProduct,registeredUser,loginUser,addWishlist,addToCart,getUserData,updateWishlist,updateBag,placedOrderBag,getSearchItem,checkoutProduct,paymentVerification,getOrderInfo}= require("../Controller/index")
+const {getAllProduct,registeredUser,loginUser,addWishlist,addToCart,getUserData,updateWishlist,updateBag,placedOrderBag,getSearchItem,checkoutProduct,paymentVerification,getOrderInfo,forgotPassword}= require("../Controller/index")
 //define the path and what have to do on that path
 router.route("/").get(getAllProduct);//when we hit this url json data will display
 router.route("/register").post(registeredUser);
@@ -23,5 +23,7 @@ router.route("/checkout").post(checkoutProduct);
 router.route("/paymentVerification").post(paymentVerification);
 //get order id
 router.route("/orderinfo").get(getOrderInfo);
+//route for generate otp
+router.route("/generateotp").get(forgotPassword);
 //export the router to use in other file
 module.exports = router;

@@ -3,6 +3,7 @@ const Product = require("../DB/ProductModel");
 const Users = require("../DB/UserModel");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 //require the razorpay
 const Razorpay = require("razorpay");
 const Orders = require("../DB/OrderModel");
@@ -216,5 +217,38 @@ const getOrderInfo= async(req,res)=>{
     res.send({"item":"hi"});
 } 
 
+//generate otp
+const forgotPassword = async(req,res)=>{
+    //create a transport 
+    const transport = nodemailer.createTransport({
+        // service: "gmail",
+        // auth: {
+        //   user: "codewithaashu1@gmail.com",
+        //   pass: "ojjyhvmrtrzgppoi",
+        // },
+
+        host: "sandbox.smtp.mailtrap.io",
+        port: 2525,
+        auth: {
+          user: "6e2da73b24a2b2",
+          pass: "c2165f839a5381"
+        }
+    })
+    //mail details(from,to,subject and body)
+    const mailInfo = {
+        from: "codewithaashu1@gmail.com",
+        to:"ashishrajk123@gmail.com",
+        subject:"Testing mail",
+        html:`<h1>Testing mail from onrender server</h1>`
+    }
+    transport.sendMail(mailInfo, function (error, info) {
+        if (error) {
+          console.log(error);
+          return res.send({ message: `An error has occured` });
+        }
+        return res.send({ message: "Email sent succesfuly" });
+      });
+}
+
 //export the controller
-module.exports = { getAllProduct, registeredUser,loginUser,addWishlist,addToCart,getUserData,updateWishlist,updateBag,placedOrderBag,getSearchItem,checkoutProduct,paymentVerification,getOrderInfo };
+module.exports = { getAllProduct, registeredUser,loginUser,addWishlist,addToCart,getUserData,updateWishlist,updateBag,placedOrderBag,getSearchItem,checkoutProduct,paymentVerification,getOrderInfo,forgotPassword };
